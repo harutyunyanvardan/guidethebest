@@ -1,0 +1,37 @@
+{
+  "name": "gtb",
+  "version": "1.0.0",
+  "description": "Guide The Best",
+  "dependencies": {
+    "@alpinejs/collapse": "3.10.2",
+    "@alpinejs/focus": "3.10.2",
+    "@splidejs/splide": "4.1.4",
+    "alpinejs": "3.10.2"
+  },
+  "config": {
+    "themepath": "./web/themes/custom/gtb"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.0",
+    "autoprefixer": "^10.2.5",
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "cssnano": "^5.1.15",
+    "postcss": "^8.4.12",
+    "postcss-cli": "^9.1.0",
+    "postcss-import": "^14.0.1",
+    "postcss-selector-parser": "^6.0.4",
+    "tailwindcss": "^3.0.0",
+    "tailwindcss-debug-screens": "^2.2.1",
+    "watch": "^1.0.2"
+  },
+  "scripts": {
+    "watchcss": "TAILWIND_MODE=watch NODE_ENV=development postcss $npm_package_config_themepath/main.css -o $npm_package_config_themepath/dist/main.css --watch",
+    "buildcss": "NODE_ENV=production postcss $npm_package_config_themepath/main.css -o $npm_package_config_themepath/dist/main.css",
+    "buildjs": "NODE_ENV=production babel $npm_package_config_themepath/src/js --out-dir $npm_package_config_themepath/dist",
+    "watchjs": "NODE_ENV=development babel $npm_package_config_themepath/src/js --out-dir $npm_package_config_themepath/dist --watch",
+    "build": "yarn run buildcss && yarn run buildjs"
+  },
+  "author": "GTB",
+  "license": "UNLICENSED"
+}

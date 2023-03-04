@@ -1,0 +1,13 @@
+name: GTB
+type: theme
+base theme: stable
+description: 'GTB Theme'
+logo: 'img/logo.png'
+core_version_requirement: ^8 || ^9 || ^10
+regions:
+  alerts: Alerts
+  audience_menu: Audience Menu
+  main_menu: Main Menu
+  main_menu_mobile: "Main Menu (Mobile)"
+  content: Content
+  footer_menu: "Footer: Menu"

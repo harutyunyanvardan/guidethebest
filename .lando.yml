@@ -1,0 +1,31 @@
+name: gtb
+recipe: drupal9
+config:
+  webroot: web
+  php: "8.2"
+services:
+  node:
+    type: node:14
+  phpmyadmin:
+    type: phpmyadmin
+    hosts:
+      - database
+  appserver:
+    overrides:
+      environment:
+        DRUSH_OPTIONS_URI: "https://gtb.lndo.site"
+tooling:
+  yarn:
+    service: node
+  npm:
+    service: node
+    cmd: "echo 'NPM is disabled in favor of yarn'"
+  phpunit:
+    service: appserver
+    cmd: vendor/bin/phpunit
+  phpcs:
+    service: appserver
+    cmd: vendor/bin/phpcs
+  eslint:
+    service: node
+    cmd: node_modules/.bin/eslint

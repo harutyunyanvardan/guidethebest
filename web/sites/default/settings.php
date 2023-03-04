@@ -32,3 +32,16 @@ $local_settings = __DIR__ . "/settings.local.php";
 if (file_exists($local_settings)) {
   include $local_settings;
 }
+
+$settings['config_sync_directory'] = dirname(DRUPAL_ROOT) . '/config';
+
+// Include Lando settings.
+if(file_exists(__DIR__ . '/settings.lando.php')) {
+    require __DIR__ . '/settings.lando.php';
+}
+
+$settings['config_exclude_modules'] = [
+    'stage_file_proxy',
+    'devel_entity_updates',
+    'devel',
+];

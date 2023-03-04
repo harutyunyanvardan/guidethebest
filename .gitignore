@@ -100,3 +100,18 @@
 
 # Ignore .env files as they are personal
 #/.env
+# Other stuff you don't want to commit:
+*.log
+*.sql*
+.idea
+.vscode
+.DS_Store
+.DS_Store?
+
+# Build artifacts and tools:
+/node_modules
+behat.local.yml
+/bower_components
+artifacts/*
+web/themes/custom/*/dist
+
