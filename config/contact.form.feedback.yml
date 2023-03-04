@@ -1,0 +1,14 @@
+uuid: d8f04e33-82f1-40d6-9dd0-c2b95ef8f92e
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vymHlgJy26BuI5GGj9-IXjwR3dRC5C0tij4BpWJnoqw
+id: feedback
+label: 'Website feedback'
+recipients:
+  - harutyunyanvardan@gmail.com
+reply: ''
+weight: 0
+message: 'Your message has been sent.'
+redirect: ''
