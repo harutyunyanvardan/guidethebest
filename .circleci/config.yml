@@ -96,8 +96,7 @@ jobs:
       - run:
           name: deploy to Pantheon
           command: ./.ci/deploy/pantheon/dev-multidev
-      - run: {name: "Yarn install", command: "yarn install --pure-lockfile" }
-      - run: {name: "Execute build", command: "yarn run build" }
+
   composer_lock_updater:
     <<: *defaults
     steps:
@@ -116,6 +115,14 @@ jobs:
       - run:
           name: run composer lock updater
           command: set -e && terminus project:clu $TERMINUS_SITE
+
+      - run:
+          name: Yarn install
+          command: yarn install --pure-lockfile
+
+      - run:
+          name: Execute build
+          command: yarn run build
 
 workflows:
   version: 2
