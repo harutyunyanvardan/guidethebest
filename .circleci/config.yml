@@ -97,6 +97,7 @@ jobs:
           name: deploy to Pantheon
           command: ./.ci/deploy/pantheon/dev-multidev
       - run: {name: "Yarn install", command: "yarn install --pure-lockfile" }
+      - run: {name: "Execute build", command: "yarn run build" }
   composer_lock_updater:
     <<: *defaults
     steps:
