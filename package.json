@@ -27,9 +27,9 @@
   },
   "scripts": {
     "watchcss": "TAILWIND_MODE=watch NODE_ENV=development postcss $npm_package_config_themepath/main.css -o $npm_package_config_themepath/dist/main.css --watch",
-    "buildcss": "NODE_ENV=production postcss $npm_package_config_themepath/main.css -o $npm_package_config_themepath/dist/main.css",
-    "buildjs": "NODE_ENV=production babel $npm_package_config_themepath/src/js --out-dir $npm_package_config_themepath/dist",
-    "watchjs": "NODE_ENV=development babel $npm_package_config_themepath/src/js --out-dir $npm_package_config_themepath/dist --watch",
+    "buildcss": "NODE_ENV=production postcss $npm_package_config_themepath/src/css/main.css -o $npm_package_config_themepath/dist/css/main.css",
+    "buildjs": "NODE_ENV=production babel $npm_package_config_themepath/src/js --out-dir $npm_package_config_themepath/dist/js",
+    "watchjs": "NODE_ENV=development babel $npm_package_config_themepath/src/js --out-dir $npm_package_config_themepath/dist/js --watch",
     "build": "yarn run buildcss && yarn run buildjs"
   },
   "author": "GTB",

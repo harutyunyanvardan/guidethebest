@@ -1,0 +1,22 @@
+uuid: 6eb94a70-075d-444c-b006-267d8af6dc85
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gtb
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: gtb_powered
+theme: gtb
+region: alerts
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: 62b38548-c857-4ac5-a3b1-9b8b9172bbed
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gtb
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: gtb_content
+theme: gtb
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,30 @@
+<div class="layout-container h-full" x-data="page">
+
+  <div class="offcanvas-wrapper relative">
+    <div class="main-content h-full">
+      <header role="banner">
+        <div class="max-w-[850px] lg:max-w-5xl 2xl:max-w-7xl my-0 mx-auto">
+          {{ page.header }}
+        </div>
+      </header>
+      <div class="flex flex-col lg:flex-row justify-center mx-auto relative">
+        <main role="main" class="w-full">
+          <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+          {% if breadcrumb %}
+            <div class="breadcrumb m-4">
+              {{ breadcrumb }}
+            </div>
+          {% endif %}
+          <div class="layout-content">
+            {{ page.content }}
+          </div>{# /.layout-content #}
+        </main>
+      </div>
+      <footer role="contentinfo" class="max-w-screen-lg 2xl:max-w-screen-xl lg:mx-auto my-16">
+        {{ page.footer }}
+      </footer>
+    </div>
+  </div>
+  {{ page.admin }}
+</div>
+

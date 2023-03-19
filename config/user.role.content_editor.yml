@@ -3,19 +3,20 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.basic_html
+    - filter.format.full_html
     - node.type.article
     - node.type.page
     - taxonomy.vocabulary.tags
   module:
-    - comment
     - contextual
     - file
+    - filter
     - node
     - path
     - system
     - taxonomy
     - toolbar
-    - tour
 _core:
   default_config_hash: Wur9kcEOwY1Jal81NssKnz3RhVJxAvBwyWQBGcA_1Go
 id: content_editor
@@ -28,7 +29,6 @@ permissions:
   - 'access contextual links'
   - 'access files overview'
   - 'access toolbar'
-  - 'access tour'
   - 'administer url aliases'
   - 'create article content'
   - 'create page content'
@@ -39,10 +39,11 @@ permissions:
   - 'delete own page content'
   - 'delete page revisions'
   - 'edit own article content'
-  - 'edit own comments'
   - 'edit own page content'
   - 'edit terms in tags'
   - 'revert all revisions'
   - 'view all revisions'
   - 'view own unpublished content'
   - 'view the administration theme'
+  - 'use text format basic_html'
+  - 'use text format full_html'
