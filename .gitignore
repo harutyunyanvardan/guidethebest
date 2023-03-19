@@ -115,3 +115,5 @@ behat.local.yml
 artifacts/*
 web/themes/custom/*/dist
 
+#copied files
+___!*
