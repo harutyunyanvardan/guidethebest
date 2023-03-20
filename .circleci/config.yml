@@ -55,6 +55,34 @@ defaults: &defaults
 
 version: 2
 jobs:
+  build:
+    executor: php
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn cache
+          keys:
+            - site-yarn-v1-{{ checksum "yarn.lock" }}
+            - site-yarn-v1-
+      - run: { name: "Yarn install", command: "yarn install --pure-lockfile" }
+      - save_cache:
+          name: Save Yarn cache
+          key: site-yarn-v1-{{ checksum "yarn.lock" }}
+          paths: [ node_modules ]
+      - restore_cache:
+          name: Restore Composer cache
+          keys:
+            - site-composer-v2-{{ checksum "composer.lock" }}
+            - site-composer-v2-
+      - run: { name: 'Composer install', command: 'composer install -n' }
+      - save_cache:
+          name: Save Composer cache
+          key: site-composer-v2-{{ checksum "composer.lock" }}
+          paths: [ vendor, web/libraries web/core, web/modules/contrib, web/themes/contrib ]
+      - run: { name: "Execute build", command: "yarn run build" }
+      - persist_to_workspace:
+          root: /var/www
+          paths: [ code ]
   configure_env_vars:
     <<: *defaults
 
@@ -97,39 +125,10 @@ jobs:
           name: deploy to Pantheon
           command: ./.ci/deploy/pantheon/dev-multidev
 
-  build:
-    executor: php
-    steps:
-      - checkout
-      - restore_cache:
-          name: Restore Yarn cache
-          keys:
-            - site-yarn-v1-{{ checksum "yarn.lock" }}
-            - site-yarn-v1-
-      - run: { name: "Yarn install", command: "yarn install --pure-lockfile" }
-      - save_cache:
-          name: Save Yarn cache
-          key: site-yarn-v1-{{ checksum "yarn.lock" }}
-          paths: [ node_modules ]
-      - restore_cache:
-          name: Restore Composer cache
-          keys:
-            - site-composer-v2-{{ checksum "composer.lock" }}
-            - site-composer-v2-
-      - run: { name: 'Composer install', command: 'composer install -n' }
-      - save_cache:
-          name: Save Composer cache
-          key: site-composer-v2-{{ checksum "composer.lock" }}
-          paths: [ vendor, web/libraries web/core, web/modules/contrib, web/themes/contrib ]
-      - run: { name: "Execute build", command: "yarn run build" }
-      - persist_to_workspace:
-          root: /var/www
-          paths: [ code ]
-
 workflows:
   version: 2
   build_deploy_and_test:
     jobs:
+      - build
       - configure_env_vars
       - deploy_to_pantheon
-      - build
