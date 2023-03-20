@@ -56,7 +56,7 @@ defaults: &defaults
 version: 2
 jobs:
   build:
-    executor: php
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -64,7 +64,9 @@ jobs:
           keys:
             - site-yarn-v1-{{ checksum "yarn.lock" }}
             - site-yarn-v1-
-      - run: { name: "Yarn install", command: "yarn install --pure-lockfile" }
+      - run:
+          name: Yarn install
+          command: yarn install --pure-lockfile
       - save_cache:
           name: Save Yarn cache
           key: site-yarn-v1-{{ checksum "yarn.lock" }}
@@ -73,16 +75,18 @@ jobs:
           name: Restore Composer cache
           keys:
             - site-composer-v2-{{ checksum "composer.lock" }}
-            - site-composer-v2-
-      - run: { name: 'Composer install', command: 'composer install -n' }
+      - run: {name: 'Composer install', command: 'composer install -n'}
       - save_cache:
           name: Save Composer cache
           key: site-composer-v2-{{ checksum "composer.lock" }}
-          paths: [ vendor, web/libraries web/core, web/modules/contrib, web/themes/contrib ]
-      - run: { name: "Execute build", command: "yarn run build" }
+          paths: [ vendor, web/core, web/modules/contrib, web/themes/contrib ]
+      - run:
+          name: Execute build
+          command: yarn run build
       - persist_to_workspace:
           root: /var/www
-          paths: [ code ]
+          paths: [code]
+
   configure_env_vars:
     <<: *defaults
 
@@ -125,6 +129,25 @@ jobs:
           name: deploy to Pantheon
           command: ./.ci/deploy/pantheon/dev-multidev
 
+  composer_lock_updater:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - run:
+          # Set TERMINUS_ENV and related environment variables.
+          # https://github.com/pantheon-systems/docker-build-tools-ci/blob/6.x/scripts/set-environment
+          name: setup-environment-vars
+          command: /build-tools-ci/scripts/set-environment
+
+      - run:
+          name: Authenticate with Terminus
+          command: terminus -n auth:login --machine-token="$TERMINUS_TOKEN"
+
+      - run:
+          name: run composer lock updater
+          command: set -e && terminus project:clu $TERMINUS_SITE
+
 workflows:
   version: 2
   build_deploy_and_test:
@@ -132,3 +155,4 @@ workflows:
       - build
       - configure_env_vars
       - deploy_to_pantheon
+      - composer_lock_updater
