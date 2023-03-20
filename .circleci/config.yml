@@ -83,9 +83,6 @@ jobs:
       - run:
           name: Execute build
           command: yarn run build
-      - persist_to_workspace:
-          root: /var/www
-          paths: [code]
 
   configure_env_vars:
     <<: *defaults
@@ -153,6 +150,9 @@ workflows:
   build_deploy_and_test:
     jobs:
       - build
-      - configure_env_vars
-      - deploy_to_pantheon
-      - composer_lock_updater
+      - configure_env_vars:
+          requires: [build]
+      - deploy_to_pantheon:
+          requires: [configure_env_vars]
+      - composer_lock_updater:
+          requires: [deploy_to_pantheon]
