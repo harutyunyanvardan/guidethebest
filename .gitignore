@@ -113,6 +113,7 @@
 behat.local.yml
 /bower_components
 artifacts/*
+/artifacts
 web/themes/custom/*/dist
 
 #copied files
