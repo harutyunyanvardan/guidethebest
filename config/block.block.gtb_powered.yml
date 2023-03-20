@@ -1,6 +1,6 @@
 uuid: 6eb94a70-075d-444c-b006-267d8af6dc85
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -10,7 +10,7 @@ _core:
   default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
 id: gtb_powered
 theme: gtb
-region: alerts
+region: header
 weight: 0
 provider: null
 plugin: system_powered_by_block

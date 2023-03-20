@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    [x-cloak] {
+        display: none;
+    }
+}
+
+@layer utilities {
+    a.hide-link {
+        @apply hidden;
+    }
+}

@@ -1,6 +1,6 @@
 uuid: d5e8af0b-6f61-451e-a926-57c1e6476930
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -10,7 +10,7 @@ _core:
   default_config_hash: VhBzWb7lMRtIOg9G7VSw_0uopi-7zXeHq4vXqqV1HFE
 id: gtb_breadcrumbs
 theme: gtb
-region: alerts
+region: header
 weight: 0
 provider: null
 plugin: system_breadcrumb_block

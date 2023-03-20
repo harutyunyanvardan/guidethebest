@@ -2,22 +2,17 @@ splide:
   version: 4.1.4
   css:
     theme:
-      /node_modules/@splidejs/splide/dist/css/splide-core.min.css: {minified: true}
+      https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide-core.min.css: { type: external, minified: true }
   js:
-    '/node_modules/@splidejs/splide/dist/js/splide.min.js': {minified: true, attributes: { defer: true}}
-    dist/js/splide.js: {}
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js': { type: external, minified: true }
 
 global:
   version: 0.0.1
   css:
     theme:
       dist/css/main.css: {}
-      https://use.typekit.net/ujz8ixk.css: {type: external, minified: true}
-      https://use.typekit.net/zby1vgc.css: {type: external, minified: true}
   js:
     dist/js/main.js: {}
-    /node_modules/@alpinejs/collapse@3.10.2/dist/cdn.min.js: {minified: true, attributes: {async: true, defer: true}}
-    /node_modules/@alpinejs/focus@3.10.2/dist/cdn.min.js: {minified: true, attributes: {async: true, defer: true}}
-    /node_modules/alpinejs/dist/cdn.min.js: {minified: true, attributes: {async: true, defer: true}}
+    https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js: {type: external, minified: true, attributes: {defer: true}}
   dependencies:
     - core/drupal

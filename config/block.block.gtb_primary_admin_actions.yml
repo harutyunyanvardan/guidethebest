@@ -1,6 +1,6 @@
 uuid: e3073465-2d26-453e-9074-28f519883ec7
 langcode: en
-status: true
+status: false
 dependencies:
   theme:
     - gtb
@@ -8,7 +8,7 @@ _core:
   default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
 id: gtb_primary_admin_actions
 theme: gtb
-region: alerts
+region: header
 weight: -5
 provider: null
 plugin: local_actions_block

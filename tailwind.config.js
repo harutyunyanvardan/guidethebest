@@ -11,8 +11,7 @@ const round = (num) =>
 
 module.exports = {
   content: [
-    './templates/**/*.{html.twig,twig}',
-    './src/js/*.js'
+    './web/themes/custom/gtb/templates/**/*.html.twig',
   ],
   theme: {
     screens: {
